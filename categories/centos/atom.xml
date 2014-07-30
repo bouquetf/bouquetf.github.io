@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title><![CDATA[Espace de fouille]]></title><link href="bouquetf.github.io/categories/centos/atom.xml" rel="self"/><link href="bouquetf.github.io/"/><updated>2014-07-30T11:39:32+02:00</updated><id>bouquetf.github.io/</id><author><name><![CDATA[Frédéric Bouquet]]></name><email><![CDATA[bouquet.frederic@gmail.com]]></email></author><generator uri="http://sysgears.com/grain/">Grain</generator><entry><title type="html"><![CDATA[Login root impossible sous centos avec une clef SSH]]></title><link href="bouquetf.github.io/blog/2014/07/30/login-root-impossible-sous-centos-avec-une-clef-ssh/"/><updated>2014-07-30T11:39:32+02:00</updated><id>/blog/2014/07/30/login-root-impossible-sous-centos-avec-une-clef-ssh/</id><content type="html"><![CDATA[<p>Ajouter sa clef SSH au login root ne suffit pas toujours pour pouvoir se connecter à un hôte sous CentOS.</p>
+<p>Le problème peut venir lorsque SELinux empèche SSHD d'accéder au fichier contenant les clefs authorisées.
+La commande suivante corrige le problème :</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>restorecon -FRvv ~/.ssh
+</span></code></pre></td></tr></table></div></figure>
+<p>Cette commande permet à sshd d'accéder aux fichiers contenus dans ~/.ssh.</p>
+<p>Bien entendu, .ssh doit avoir les droits 700 et authorized_keys (ou authorized_keys2) doit avoir les droits 600.</p>
+]]></content></entry></feed>
